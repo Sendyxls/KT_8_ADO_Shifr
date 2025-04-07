@@ -1,0 +1,27 @@
+﻿@removeTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Шифрование";
+}
+<h1>Шифрование</h1>
+
+<form method="post">
+    <label>Введите текст:</label><br />
+    <textarea name="inputText">@ViewBag.InputText</textarea><br />
+
+    <label>Выберите алгоритм:</label><br />
+    <select name="algorithm">
+        <option value="AES" @(ViewBag.Algorithm == "AES" ? "selected" : "")>AES</option>
+        <option value="RSA" @(ViewBag.Algorithm == "RSA" ? "selected" : "")>RSA</option>
+    </select>
+
+    
+
+    <button type="submit" name="action" value="encrypt">Зашифровать</button>
+    <button type="submit" name="action" value="decrypt">Дешифровать</button>
+</form>
+
+@if (ViewBag.OutputText != null)
+{
+    <p><strong>Результат:</strong></p>
+    <pre>@ViewBag.OutputText</pre>
+}
